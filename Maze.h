@@ -1,87 +1,60 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include<list>
 
+struct Node {
+	int x;
+	int y;
+	int distance;
+
+	int prevx;
+	int prevy;
+
+	struct Node* parent;
+	int v;
+
+};
 class Maze
 {
 public:
-	Maze();
-	void createMaze(int r, int c, int exits);
+
+	bool isValid(std::vector<std::vector<char>>& maze, std::vector<std::vector<char>>& visited, int r, int c);
+	void algorithm(std::vector<std::vector<char>>& maze, int i, int j, int x, int y);
+	void printvisit();
+	Maze() ;
+	~Maze() ;
+	void createMaze(int& r, int& c, int& exits);
 	void recursion(int r, int c, int rSize, int cSize);
 	std::vector<int> randGenerator();
 	void middle(int row, int col);
+	void ePos();
+	void getEPos();
+	bool solveMaze(int row, int col, int rSize, int cSize);
 	void printMaze();
+	void printshortest();
 	void clearMaze();
 	void readFile();
 	void writeFile();
+	void copy1();
+	void copyMaze();
+	void clearO();
 	bool inBounds(int r, int c, int rSize, int cSize);
 	void createExit(int row, int col, int exits);
 
+	int tempi;
+	int tempj;
+	int getTempi() { return tempi; }
+	int getTempj() { return tempj; }
+	std::vector<std::vector<char>>& getMaze() {return mazeVect;};
+
+
 private:
 	std::vector<std::vector<char>> mazeVect;
+	std::vector<std::vector<char>> mazeSol;
+	std::vector<std::vector<char>> aaa;
+	std::vector<std::vector<char>> visited;
+	std::vector<std::vector<char>> overallshortest;
+	std::list<int>numberList;
 
 };
-
-
-////most recent
-//void Maze::recursion(int r, int c, int height, int width) {
-//
-//	vector<int>directions = randGenerator();
-//	const int up = 0;
-//	const int right = 1;
-//	const int left = 2;
-//	const int down = 3;
-//
-//	if (mazeVect[r][c] == 'E') {
-//		cout << "jere";
-//	}
-//	else {
-//		for (int i = 0; i < 4; i++) {
-//			switch (directions[i]) {
-//
-//			case up:
-//				if (r - 1 <= 0) {
-//					continue;
-//				}
-//				if (mazeVect[r - 2][c] != ' ' && mazeVect[r - 2][c] != 'E') {
-//					mazeVect[r - 2][c] = ' ';
-//					mazeVect[r - 1][c] = ' ';
-//					recursion(r - 2, c, height, width);
-//				}
-//				break;
-//			case right:
-//				if (c + 1 >= width - 1) {
-//					continue;
-//				}
-//				if (mazeVect[r][c + 2] != ' ' && mazeVect[r][c + 2] != 'E') {
-//					mazeVect[r][c + 2] = ' ';
-//					mazeVect[r][c + 1] = ' ';
-//					recursion(r, c + 2, height, width);
-//				}
-//				break;
-//			case down:
-//				if (r + 1 >= height - 1) {
-//					continue;
-//				}
-//				if (mazeVect[r + 2][c] != ' ' && mazeVect[r + 2][c] != 'E') {
-//					mazeVect[r + 2][c] = ' ';
-//					mazeVect[r + 1][c] = ' ';
-//					recursion(r + 2, c, height, width);
-//				}
-//				break;
-//			case left:
-//				if (c - 1 <= 0) {
-//					continue;
-//				}
-//				if (mazeVect[r][c - 2] != ' ' && mazeVect[r][c - 2] != 'E') {
-//					mazeVect[r][c - 2] = ' ';
-//					mazeVect[r][c - 1] = ' ';
-//					recursion(r, c - 2, height, width);
-//				}
-//				break;
-//			}
-//		}
-//	}
-//
-//
-//}
