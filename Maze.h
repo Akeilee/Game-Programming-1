@@ -1,7 +1,11 @@
+//Author: Jane Lee
+//Date: 11/2020
+//8501 Programming CW1
+
 #pragma once
 #include <iostream>
 #include <vector>
-#include<list>
+#include <list>
 
 struct Node {
 	int x;
@@ -15,46 +19,64 @@ struct Node {
 	int v;
 
 };
+
 class Maze
 {
 public:
 
-	bool isValid(std::vector<std::vector<char>>& maze, std::vector<std::vector<char>>& visited, int r, int c);
-	void algorithm(std::vector<std::vector<char>>& maze, int i, int j, int x, int y);
-	void printvisit();
-	Maze() ;
-	~Maze() ;
+	Maze();
+	~Maze();
+
 	void createMaze(int& r, int& c, int& exits);
-	void recursion(int r, int c, int rSize, int cSize);
+	void createMiddle(int row, int col);
+	void createWall(int r, int c, int rSize, int cSize);
+	void createExit(int row, int col, int exits);
 	std::vector<int> randGenerator();
-	void middle(int row, int col);
+	bool inBounds(int r, int c, int rSize, int cSize);
+
 	void ePos();
 	void getEPos();
-	bool solveMaze(int row, int col, int rSize, int cSize);
+
+	bool tileIsValid(std::vector<std::vector<char>>& maze, std::vector<std::vector<char>>& visitedMaze, int r, int c);
+	void findPath(std::vector<std::vector<char>>& maze, int i, int j, int x, int y);
+
 	void printMaze();
-	void printshortest();
-	void clearMaze();
+	void printShortestRoute();
+	void printSolution();
+
+	void clearAllMazes();
+	void copyOGMaze();
+	void copyTempMaze();
+
 	void readFile();
 	void writeFile();
-	void copy1();
-	void copyMaze();
-	void clearO();
-	bool inBounds(int r, int c, int rSize, int cSize);
-	void createExit(int row, int col, int exits);
 
 	int tempi;
 	int tempj;
-	int getTempi() { return tempi; }
-	int getTempj() { return tempj; }
-	std::vector<std::vector<char>>& getMaze() {return mazeVect;};
+	int getTempi() { return tempi; };
+	int getTempj() { return tempj; };
 
+	int rowMain;
+	int colMain;
+	int getRow() { return rowMain; };
+	int getCol() { return colMain; };
+	void setRow(int r) { rowMain = r; };
+	void setCol(int c) { colMain = c; };
+
+	bool shouldPrint;
+	void setShouldPrint(bool p) { shouldPrint = p; };	
+	bool printOriginal;
+	void setprintOriginal(bool p) { printOriginal = p; };
+
+	std::vector<std::vector<char>>& getMaze() {return mazeVect;};
+	std::vector<std::vector<char>>& getSolMaze() {return mazeSol;};
 
 private:
 	std::vector<std::vector<char>> mazeVect;
 	std::vector<std::vector<char>> mazeSol;
-	std::vector<std::vector<char>> aaa;
-	std::vector<std::vector<char>> visited;
-	std::vector<std::vector<char>> overallshortest;
-	std::list<int>numberList;
+	std::vector<std::vector<char>> tempMaze;
+	std::vector<std::vector<char>> visitedMaze;
+	std::vector<std::vector<char>> overallShortestMaze;
+	std::list<int>ePosList;
 
 };
