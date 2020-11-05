@@ -19,6 +19,7 @@ int main() {
 	bool notDoneB = false;
 	
 	cout << " - MENU - \n"
+		<< " - m = Show Menu\n"
 		<< " - n = Create new maze\n"
 		<< " - b = Find all routes\n"
 		<< " - f = Shortest path out of all routes\n"
@@ -126,6 +127,20 @@ int main() {
 
 		case 'o':
 			testM->readFile();
+			cout << "\nEnter character for next operation: ";
+			cin >> input;
+			break;
+
+		case 'm':
+			cout << "\n - MENU - \n"
+				<< " - m = Show Menu\n"
+				<< " - n = Create new maze\n"
+				<< " - b = Find all routes\n"
+				<< " - f = Shortest path out of all routes\n"
+				<< " - s = Save CURRENT shown Maze to file\n"
+				<< " - a = Save BLANK maze to file\n"
+				<< " - o = Open file\n"
+				<< " - e or 0 = Exit program\n";
 			cout << "\nEnter character for next operation: ";
 			cin >> input;
 			break;

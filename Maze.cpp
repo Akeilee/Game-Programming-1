@@ -67,7 +67,7 @@ void Maze::createMaze(int& row, int& col, int& exits) {
 				}
 
 				else {
-					cout << "Wrong no. of exits. Re-enter no. of exits:" << endl;
+					cout << "Incorrect no. of exits. Re-enter no. of exits:" << endl;
 					cin >> e2;
 					exits = e2;
 				}
