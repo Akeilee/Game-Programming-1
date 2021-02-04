@@ -1,0 +1,20 @@
+X X X X X X X X X X X X X X X X X X X X 
+X X X X X X X X X X X X X X X X X X X X 
+X X                       X     o o o X 
+X X   X X X X X X X X X   X   X o X o X 
+X X       X           X   X   X o X o X 
+X X X X   X   X X X   X   X X X o X o X 
+X X   X   X       X   X   X o o o X o X 
+X X   X   X X X   X   X   X o X X X o X 
+X X       X       X       X o o o X o X 
+X X   X X X   X X       X X X X o X o X 
+X X   X   X         S o o o o o o X o X 
+X X   X   X X X X       X X   X X X o X 
+X X   X           X           X   X o X 
+X X   X   X X X   X   X X X X X   X o X 
+X X       X   X       X o o o o o o o X 
+X X X X X X   X X X X X o X X X X X X X 
+E     o o o o X o o o X o o o o o o o X 
+X X   o X X o X o X o X X X X X X X o X 
+X X   o   X o o o X o o o o o o o o o X 
+X X X E X X X X X X X X X X X X X X X X 

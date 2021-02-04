@@ -20,14 +20,15 @@ int main() {
 	
 	cout << " - MENU - \n"
 		<< " - m = Show Menu\n"
+		<< " - r = Restart Program\n"
 		<< " - n = Create new maze\n"
 		<< " - b = Find all routes\n"
 		<< " - f = Shortest path out of all routes\n"
 		<< " - s = Save CURRENT shown Maze to file\n"
 		<< " - a = Save BLANK maze to file\n"
 		<< " - o = Open file\n"
-		<< " - e or 0 = Exit program\n\n"
-		<< "Please enter a character:\n" << endl;;
+		<< " - e = Exit program\n\n"
+		<< "Please enter a character:\n" << endl;
 
 	cin >> input;
 
@@ -36,16 +37,33 @@ int main() {
 		switch (input) {
 
 		case 'n':
-
 			testM->clearAllMazes();
-			cout << "Enter row size from 7 to 101: ";
+
+			cout << "Enter row size from 7 to 51: ";
 			cin >> r;
 			testM->setRow(r);
-			cout << "Enter column size from 7 to 101: ";
+			cout << "Enter column size from 7 to 51: ";
 			cin >> c;
 			testM->setCol(c);
-			cout << "Enter no. exits from 1 to " << (((testM->getRow() * 2) + (testM->getCol() * 2)) - 4) / 2 << ": ";
+			cout << "Enter no. exits from 1 to " << (((testM->getRow() * 2) + (testM->getCol() * 2)) - 4) / 4 << ": ";
 			cin >> exits;
+
+			while (cin.fail()) {
+				cout << "\n\nWrong input, please try again\n";
+				cin.clear();
+				cin.ignore();
+				r = 0;
+				c = 0;
+				exits = 0;
+				cout << "Enter row size from 7 to 51: ";
+				cin >> r;
+				testM->setRow(r);
+				cout << "Enter column size from 7 to 51: ";
+				cin >> c;
+				testM->setCol(c);
+				cout << "Enter no. exits from 1 to " << (((testM->getRow() * 2) + (testM->getCol() * 2)) - 4) / 4 << ": ";
+				cin >> exits;
+			}
 
 			testM->createMaze(r, c, exits);
 			testM->createMiddle(testM->getRow(), testM->getCol());
@@ -60,7 +78,6 @@ int main() {
 			break;
 
 		case 'b':
-
 			if (testM->getMaze().size() <= 0) {
 				cout << "No maze found, please create a maze\n\n";
 				input = 'n';
@@ -92,7 +109,6 @@ int main() {
 			break;
 
 		case 'f':
-
 			if (testM->getMaze().size() <= 0) {
 				cout << "No maze found, please create a maze\n\n";
 				input = 'n';
@@ -134,24 +150,28 @@ int main() {
 		case 'm':
 			cout << "\n - MENU - \n"
 				<< " - m = Show Menu\n"
+				<< " - r = Restart Program\n"
 				<< " - n = Create new maze\n"
 				<< " - b = Find all routes\n"
 				<< " - f = Shortest path out of all routes\n"
 				<< " - s = Save CURRENT shown Maze to file\n"
 				<< " - a = Save BLANK maze to file\n"
 				<< " - o = Open file\n"
-				<< " - e or 0 = Exit program\n";
+				<< " - e = Exit program\n";
 			cout << "\nEnter character for next operation: ";
 			cin >> input;
 			break;
+		case 'r':
+			cout << "\nProgram Restarted\n";
+			r = 0;
+			c = 0;
+			exits = 0;
+			notDoneB = false;
+			testM->clearAllMazes();
+			input = 'm';
+			break;
 
 		case 'e':
-			cout << "Exiting...";
-			delete testM;
-			testM = nullptr;
-			return 0;
-
-		case '0': //////////////////////////////////////////////////////////////////
 			cout << "Exiting...";
 			delete testM;
 			testM = nullptr;
@@ -166,5 +186,7 @@ int main() {
 
 	}
 
+	delete testM;
+	testM = nullptr;
 	return 0;
 }

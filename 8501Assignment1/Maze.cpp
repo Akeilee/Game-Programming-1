@@ -40,58 +40,57 @@ void Maze::createMaze(int& row, int& col, int& exits) {
 	int e2 = exits;
 
 	while (!validMaze) {
+			if ((row <= 51 && row >= 7) && (col <= 51 && col >= 7)) {
+				rowMain = row;
+				colMain = col;
+				mazeVect.resize(row, std::vector<char>(col, 'X'));
+				int midRow = row / 2;
+				int midCol = col / 2;
 
-		if ((row <= 101 && row >= 7) && (col <= 101 && col >= 7)) {
-			rowMain = row;
-			colMain = col;
-			mazeVect.resize(row, std::vector<char>(col, 'X'));
-			int midRow = row / 2;
-			int midCol = col / 2;
-
-			for (int i = 0; i < row; i++) {
-				for (int j = 0; j < col; j++) {
-					mazeVect[0][j] = 'X';
-					mazeVect[i][0] = 'X';
-					mazeVect[row - 1][j] = 'X';
-					mazeVect[i][col - 1] = 'X';
+				for (int i = 0; i < row; i++) {
+					for (int j = 0; j < col; j++) {
+						mazeVect[0][j] = 'X';
+						mazeVect[i][0] = 'X';
+						mazeVect[row - 1][j] = 'X';
+						mazeVect[i][col - 1] = 'X';
+					}
 				}
+
+				createWall(midRow, midCol, row, col);
+
+				while (!validExits) {
+					int maxExits = (((row * 2) + (col * 2)) - 4) / 4;
+					if (exits <= maxExits && exits >= 1) {
+						createExit(row, col, exits);
+						validExits = true;
+					}
+
+					else {
+						cout << "Incorrect no. of exits. Re-enter no. of exits:" << endl;
+						cin >> e2;
+						exits = e2;
+					}
+				}
+
+				validMaze = true;
+			}
+			else {
+				validMaze = false;
+				cout << "Incorrect maze size. Re-enter row size: ";
+				cin >> r2;
+				cout << "Re-enter column size: ";
+				cin >> c2;
+				row = r2;
+				col = c2;
+
+				validExits = false;
+				cout << "Enter no. exits from 1 to " << (((row * 2) + (col * 2)) - 4) / 4 << ": ";
+				cin >> e2;
+				exits = e2;
+
 			}
 
-			createWall(midRow, midCol, row, col);
-
-			while (!validExits) {
-				int maxExits = (((row * 2) + (col * 2)) - 4) / 2;
-				if (exits <= maxExits && exits >= 1) {
-					createExit(row, col, exits);
-					validExits = true;
-				}
-
-				else {
-					cout << "Incorrect no. of exits. Re-enter no. of exits:" << endl;
-					cin >> e2;
-					exits = e2;
-				}
-			}
-
-			validMaze = true;
 		}
-		else {
-			validMaze = false;
-			cout << "Incorrect maze size. Re-enter row size: ";
-			cin >> r2;
-			cout << "Re-enter column size: ";
-			cin >> c2;
-			row = r2;
-			col = c2;
-
-			validExits = false;
-			cout << "Enter no. exits from 1 to " << (((row * 2) + (col * 2)) - 4) / 2 << ": ";
-			cin >> e2;
-			exits = e2;
-
-		}
-
-	}
 
 }
 
